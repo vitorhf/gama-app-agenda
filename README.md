@@ -6,7 +6,9 @@ O grupo tinha como objetivo criar o app em uma plataforma que não tinhamos conh
 
 ###Integrantes do grupo:
 Rander Oliveira
+
 Ricardo Drumond
+
 Vitor Hallais
 
 # Como fazer
