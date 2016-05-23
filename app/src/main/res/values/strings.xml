@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Agenda de Contatos</string>
+    <string name="title_activity_new_user_form">Contato</string>
+    <string name="action_settings">Configuração</string>
+</resources>
