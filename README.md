@@ -11,7 +11,7 @@ Ricardo Drumond
 
 Vitor Hallais
 
-# Como fazer
+# Como rodar
 
 1. Necessário o download e instalação do [Android Studio](https://developer.android.com/studio/install.html)
 2. Faça o download do projeto [aqui](https://github.com/vitorhf/gama-app-agenda/archive/master.zip).
