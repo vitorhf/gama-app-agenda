@@ -16,7 +16,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/minhaLista"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/txtPesquisar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPesquisar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Pesquisar" />
 </RelativeLayout>

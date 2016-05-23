@@ -13,11 +13,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.List;
@@ -25,6 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView minhaLista;
+    EditText campoPesquisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         minhaLista = (ListView) findViewById(R.id.minhaLista);
+        campoPesquisa = (EditText) findViewById(R.id.txtPesquisar);
         registerForContextMenu(minhaLista);
 
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,12 +117,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         carregaLista();
+        campoPesquisa.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals("")) {
+                    // carrega a lista toda
+                    carregaLista();
+                } else {
+                    pesquisaLista(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         super.onResume();
     }
 
     private void carregaLista() {
         ContatoDAO dao = new ContatoDAO(this);
         List<Contato> contatos = dao.getList();
+        dao.close();
+
+        ContatoAdaptador adaptador = new ContatoAdaptador(this, contatos);
+        this.minhaLista.setAdapter(adaptador);
+    }
+
+    private void pesquisaLista(String filtro) {
+        ContatoDAO dao = new ContatoDAO(this);
+        List<Contato> contatos = dao.getListFiltro(filtro);
         dao.close();
 
         ContatoAdaptador adaptador = new ContatoAdaptador(this, contatos);
@@ -132,5 +167,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
 }

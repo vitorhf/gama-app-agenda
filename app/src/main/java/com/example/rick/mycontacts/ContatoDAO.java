@@ -69,7 +69,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
     public List<Contato> getList() {
         List<Contato> contatos = new ArrayList<Contato>();
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABELA + " ORDER BY nome;", null);
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABELA + " ORDER BY UPPER(nome);", null);
         while (cursor.moveToNext()) {
             Contato contato = new Contato();
             contato.setId(cursor.getLong(cursor.getColumnIndex("id")));
@@ -81,6 +81,23 @@ public class ContatoDAO extends SQLiteOpenHelper {
         }
         cursor.close();
         Log.d("VITOR","BUSCANDO DADOS");
+        return contatos;
+    }
+
+    public List<Contato> getListFiltro(String filtro) {
+        List<Contato> contatos = new ArrayList<Contato>();
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABELA + " WHERE nome LIKE '%"+filtro+"%' ORDER BY UPPER(nome);", null);
+        while (cursor.moveToNext()) {
+            Contato contato = new Contato();
+            contato.setId(cursor.getLong(cursor.getColumnIndex("id")));
+            contato.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+            contato.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
+            contato.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            contato.setFoto(cursor.getString(cursor.getColumnIndex("caminhoFoto")));
+            contatos.add(contato);
+        }
+        cursor.close();
+        Log.d("VITOR","FILTRANDO DADOS");
         return contatos;
     }
 
