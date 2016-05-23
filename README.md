@@ -19,3 +19,6 @@ Vitor Hallais
 4. Clique no menu Run->Run app ou clique Shift+F10 para emular o app no simulador do Android Studio.
 5. Caso queira, clique no menu em Build->Build APK para gerar o arquivo necessário para instalar o app nos dispositivos com Android.
 	5.1 - Mande o arquivo apk gerado para o dispostivo android e instale-o.
+
+# Video Demo
+[https://youtu.be/riPUG36nWFg](https://youtu.be/riPUG36nWFg) - Será regravado mostrando o ínicio q foi cortado aparentamente
